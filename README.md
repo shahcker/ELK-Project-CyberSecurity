@@ -25,12 +25,14 @@ Load balancing ensures that the application will be highly available, in additio
 - The load balancer aids in security by offloading traffic from a corporate server to a public cloud provider. By distributing HTTP traffic between webservers, the webservers and the network will not be overwhelmed by hundreds or even thousands of user requests; this is why load balancers are so crucial in cyber security, as they not only help in applications running smoothly, but also help prevent attacks such as DoS attacks. The advantage of the JumpBox is that is the only means of access to the network and can be only accessed by specific IP addresses. 
 
 Integrating an ELK (Elasticsearch, Logstash, and Kibana) server allows users to easily monitor the vulnerable VMs for changes to the network files and monitor system metrics.
+
 -  Filebeat is a lightweight shipper for forwarding and centralizing log data. Installed as an agent on your servers, Filebeat monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing.
-  - When you start Filebeat, it starts one or more inputs that look in the locations you’ve specified for log data. For each log that Filebeat locates, Filebeat starts a harvester. Each harvester reads a single log for new content and sends the new log data to libbeat, which aggregates the events and sends the aggregated data to the output that you’ve configured for Filebeat.
+   - When you start Filebeat, it starts one or more inputs that look in the locations you’ve specified for log data. For each log that Filebeat locates, Filebeat starts a harvester. Each harvester reads a single log for new content and sends the new log data to libbeat, which aggregates the events and sends the aggregated data to the output that you’ve configured for Filebeat.
+
 -  Metricbeat is a lightweight shipper that you can install on your servers to periodically collect metrics from the operating system and from services running on the server. Metricbeat takes the metrics and statistics that it collects and ships them to the output that you specify, such as Elasticsearch or Logstash.
-  - Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server, such as: Apache, MongoDB, MySQL, Nginx, PostgreSQL, and Redis
-  - Metricbeat can insert the collected metrics directly into Elasticsearch or send them to Logstash, Redis, or Kafka.
-  - Metricbeat is an Elastic Beat. It’s based on the libbeat framework.
+    - Metricbeat helps you monitor your servers by collecting metrics from the system and services running on the server, such as: Apache, MongoDB, MySQL, Nginx, PostgreSQL, and Redis
+    - Metricbeat can insert the collected metrics directly into Elasticsearch or send them to Logstash, Redis, or Kafka.
+    - Metricbeat is an Elastic Beat. It’s based on the libbeat framework.
 
 The configuration details of each machine may be found below.
 
@@ -73,13 +75,13 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - The main advantage is that it automates the process of deploying configurations on multiple web-servers in one shot. It is easier to maintain the servers with ansible if there are for example 100 servers. Patches can be updated easily if there were misconfigurations with ansible-playbooks. Also, Ansible is free
 
 The playbook implements the following tasks:
-- 1) Identifies the target machines
-- 2) Installs docker.io onto the machines
-- 3) Installs pip3 (python3) onto the machines
-- 4) Install Docker Python Module
-- 5) System Control initated to increase virtual memory on the target machines (DVWAs)
-- 6) Launching the Docker Container with Restart Enabled
-- 7) Ensuring the correct Ports are enabled (5601, 9200, 5044)
+1) Identifies the target machines
+2) Installs docker.io onto the machines
+3) Installs pip3 (python3) onto the machines
+4) Install Docker Python Module
+5) System Control initated to increase virtual memory on the target machines (DVWAs)
+6) Launching the Docker Container with Restart Enabled
+7) Ensuring the correct Ports are enabled (5601, 9200, 5044)
 
 The following screenshot displays the result of running `sudo docker ps -a` after successfully configuring the ELK instance.
 
