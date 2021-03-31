@@ -507,7 +507,7 @@ Let us now launch a new VM from the Azure portal that could only be accessed usi
 
 4. Locate the Ansible config file and hosts file.
 
-![Ansible Config](/Files/ansible.cfg)
+[Ansible Config](/Files/ansible.cfg)
 
     ```bash
     root@1f08425a2967:~# ls /etc/ansible/
@@ -647,7 +647,7 @@ Let us now create an Ansible playbook that will install Docker and configure a V
 
 2. Create a YAML playbook file that you will use for your configuration. 
 
-![Pentest Config](/Files/pentest.yml)
+[Pentest Config](/Files/pentest.yml)
 
   ```bash
   root@1f08425a2967:~# nano /etc/ansible/pentest.yml
@@ -1468,7 +1468,7 @@ Install Filebeat on your DVWA VM:
 
 ### 2. Creating the Filebeat Configuration File
 
-![Filebeat Config](/Files/filebeat-config.yml)
+[Filebeat Config](/Files/filebeat-config.yml)
 
 Next, create a Filebeat configuration file and edit this file so that it has the correct settings to work with your ELK server.
 
@@ -1534,7 +1534,7 @@ After you have edited the file, your settings should resemble the below. Your IP
 
 ### 3. Creating the Filebeat Installation Play
 
-![Filebeat Playbook](/Files/filebeat-playbook.yml)
+[Filebeat Playbook](/Files/filebeat-playbook.yml)
 
 Create another Ansible playbook that accomplishes the Linux Filebeat installation instructions.
 
@@ -1625,7 +1625,7 @@ Next, you needed to confirm that the ELK stack was receiving logs. Navigate back
 
 ### Install Metricbeat
 
-![Metricbeat Playbook](/Files/metricbeat-playbook.yml)
+[Metricbeat Playbook](/Files/metricbeat-playbook.yml)
 
 To update your Ansible playbook to install Metricbeat:
 

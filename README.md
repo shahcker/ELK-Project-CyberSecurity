@@ -6,7 +6,7 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible-Playbook elk.yml file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [!Install Elk Playbook](/Files/install-elk.yml)
+  - [Install Elk Playbook](/Files/install-elk.yml)
 
 This document contains the following details:
 - Description of the Topology
@@ -53,7 +53,7 @@ The configuration details of each machine may be found below.
 The machines on the internal network are not exposed to the public Internet. 
 
 Only the JumpBox Provisioner machine can accept connections from the Internet. Access to this machine is only allowed from the my personal public IP addresses
-- 99.105.215.95
+- My Personal IP Address
 
 Machines within the network can only be accessed by peer servers and a connection via JumpBox. The Jumpbox Provisioner connects via SSH to the Webservers (Web 1, Web 2 & Web 3) and the ELK Server. The Web Server machines send logs to the ELK Server to be forwarded for indexing. JumpBox Provisioner's public IP address - 52.137.81.241
 
@@ -101,8 +101,8 @@ These Beats allow us to collect the following information from each machine:
 
 ### Using the Playbook
 
-![Filebeat Playbook](/Files/filebeat-playbook.yml)
-![Metricbeat Playbook](/Files/metricbeat-playbook.yml)
+[Filebeat Playbook](/Files/filebeat-playbook.yml)
+[Metricbeat Playbook](/Files/metricbeat-playbook.yml)
 
 
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
