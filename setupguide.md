@@ -1,4 +1,4 @@
-Setup Guide
+# Setup Guide
 
 Before beginning you want to make sure to update -- sudo apt update -- and upgrade -- sudo apt upgrade -- all virtual machines first! This includes the VMs hosting DVWA and ELK containers. This should be the first step in VM creation and maintenance in general, but it is particularly vital in this case as it will interfere with package installation and playbook execution should the systems be out of date.
 
@@ -6,125 +6,125 @@ Before beginning you want to make sure to update -- sudo apt update -- and upgra
 
 a) Create a Resource Group
 
-    By having all or most of our resources in one Virtual Network, the webservers and jumpbox virtual machines will be a part of the same subnet. Placing all resources in one Resource Group is simply good housekeeping and easier to manage. It is best to keep the names consist to avoid confusion (e.g. EXAMPLE-resource-group and EXAMPLE-vnet). 
+  By having all or most of our resources in one Virtual Network, the webservers and jumpbox virtual machines will be a part of the same subnet. Placing all resources in one Resource Group is simply good housekeeping and easier to manage. It is best to keep the names consist to avoid confusion (e.g. EXAMPLE-resource-group and EXAMPLE-vnet). 
 
-    ![](/Images/ResourceGroup1.png)
+  ![](/Images/ResourceGroup1.png)
 
-    Simply type in the type of resource intended to create -- for example, "resource group" -- in the search bar. More often than not the top search result will be the right resource. Click on the link and then click "+ Add".
+  Simply type in the type of resource intended to create -- for example, "resource group" -- in the search bar. More often than not the top search result will be the right resource. Click on the link and then click "+ Add".
 
-    ![](/Images/ResouceGroup2.png)
+  ![](/Images/ResouceGroup2.png)
 
-    It is necessary to enter a Resource Group name and to select a Region. From there you may select "Review + create" at the bottom of the page, or click "Next: Tags >" to label the Resource Group for further organization (in the case there are multiple Resource Groups). 
+  It is necessary to enter a Resource Group name and to select a Region. From there you may select "Review + create" at the bottom of the page, or click "Next: Tags >" to label the Resource Group for further organization (in the case there are multiple Resource Groups). 
 
 b) Setting up the VNet
 
-    Before you can deploy servers and services, there must be a network where these items can be accessed.
+  Before you can deploy servers and services, there must be a network where these items can be accessed.
 
-        - This network should have the capacity to hold any resource that the Red Team needs, now and in the future.
+  - This network should have the capacity to hold any resource that the Red Team needs, now and in the future.
 
-        - Return to the home screen and search for "net." Choose the search result for Virtual networks.
+  - Return to the home screen and search for "net." Choose the search result for Virtual networks.
 
-        - Click on the + Add button on the top-left of the page or the Create virtual network button on the bottom of the page.
+  - Click on the + Add button on the top-left of the page or the Create virtual network button on the bottom of the page.
 
-    Fill in the network settings:
+  Fill in the network settings:
 
-    - Subscription: Your free subscription should be the only option here. 
+  - Subscription: Your free subscription should be the only option here. 
         
-    - Resource group: This should be the resource group you created in step two.
+  - Resource group: This should be the resource group you created in step two.
 
-    - Name: A descriptive name so it will not get confused with other cloud networks in the same account.
+  - Name: A descriptive name so it will not get confused with other cloud networks in the same account.
 
-    - Region: Make sure to choose the same region you chose for your resource group.
+  - Region: Make sure to choose the same region you chose for your resource group.
 
-        - Carefully configuring the region of your resources is important for ensuring  low latency and high availability. Resources should be located as close as possible to those who will be consuming them.
+    - Carefully configuring the region of your resources is important for ensuring  low latency and high availability. Resources should be located as close as possible to those who will be consuming them.
 
-        ![](/Images/VNet1.png)
+  ![](/Images/VNet1.png)
 
-    - IP Addresses: Azure requires you to define a network and subnet. 
-        - Use the defaults on this tab.
+  - IP Addresses: Azure requires you to define a network and subnet. 
+    - Use the defaults on this tab.
 
-        ![](/Images/VNet2.png)
+    ![](/Images/VNet2.png)
 
-    - Security: Leave the default settings. 
-        - In order to avoid recurring charges, do NOT enable DDoS Protection Standard. 
+  - Security: Leave the default settings. 
+    - In order to avoid recurring charges, do NOT enable DDoS Protection Standard. 
 
-        ![](/Images/VNet3.png)
+    ![](/Images/VNet3.png)
         
-    - Tags: No tags are needed. 
+  - Tags: No tags are needed. 
 
-    Click Create
+  Click Create
 
-    ![](/Images/VNet4.png)
+  ![](/Images/VNet4.png)
 
 c) Setting Up Network Security Groups
 
-    Now we need to setup a firewall in front of the VNet to block specific traffic
+  Now we need to setup a firewall in front of the VNet to block specific traffic
  
-    To create a network security group:
+  To create a network security group:
 
-    - On your Azure portal home screen, search "net" and choose **Network security groups**. 
+  - On your Azure portal home screen, search "net" and choose **Network security groups**. 
 
-    ![](/Images/NSG1.png)
+  ![](/Images/NSG1.png)
 
-    - Create a new security group.
+  - Create a new security group.
 
-    - Add this security group to your resource group.
+  - Add this security group to your resource group.
 
-    - Give the group a recognizable name that is easy to remember.
+  - Give the group a recognizable name that is easy to remember.
 
-    - Make sure the security group is in the same region that you chose during the previous activity.
+  - Make sure the security group is in the same region that you chose during the previous activity.
 
-    ![](/Images/NSG2.png)
+  ![](/Images/NSG2.png)
 
-    ![](/Images/NSG3.png)
+  ![](/Images/NSG3.png)
 
-   To create an inbound rule to block traffic:
+  To create an inbound rule to block traffic:
 
-    - Once the security group is created, click on the group to configure it.
+  - Once the security group is created, click on the group to configure it.
 
-    - Choose **Inbound security rules** on the left.
+  - Choose **Inbound security rules** on the left.
 
-    - Click on the **+ Add** button to add a rule.
+  - Click on the **+ Add** button to add a rule.
 
-    Configure the inbound rule as follows:
+  Configure the inbound rule as follows:
 
-    - Source: Choose **Any** source to block all traffic.
+  - Source: Choose **Any** source to block all traffic.
 
-    - Source port ranges: Source ports are always random, even with common services like HTTP. Therefore, keep the wildcard (*) to match all source ports.
+  - Source port ranges: Source ports are always random, even with common services like HTTP. Therefore, keep the wildcard (*) to match all source ports.
 
-    - Destination: Select **Any** to block any and all traffic associated with this security group.
+  - Destination: Select **Any** to block any and all traffic associated with this security group.
 
-    - Destination port ranges: Usually, you would specify a specific port or a range of ports for the destination. In this case, you can use the wildcard (*) to block all destination ports. You can also block all ports using a range like `0-65535`.
+  - Destination port ranges: Usually, you would specify a specific port or a range of ports for the destination. In this case, you can use the wildcard (*) to block all destination ports. You can also block all ports using a range like `0-65535`.
 
-    - Protocol: Block **Any** protocol that is used.
+  - Protocol: Block **Any** protocol that is used.
 
-    - Action: Use the **Block** action to stop all of the traffic that matches this rule.
+  - Action: Use the **Block** action to stop all of the traffic that matches this rule.
 
-    - Priority: This rule will always be the last rule, so it should have the highest possible number for the priority. Other rules will always come before this rule. The highest number Azure allows is 4,096.
+  - Priority: This rule will always be the last rule, so it should have the highest possible number for the priority. Other rules will always come before this rule. The highest number Azure allows is 4,096.
 
-    - Name: Give your rule a name like "Default-Deny."
+  - Name: Give your rule a name like "Default-Deny."
 
-    - Description: Write a quick description similar to "Deny all inbound traffic."
+  - Description: Write a quick description similar to "Deny all inbound traffic."
 
-    - Save the rule.
+  - Save the rule.
 
-    ![](/Images/InboudRule.png)
+  ![](/Images/InboudRule.png)
 
-    You should now have a VNet protected by a network security group that blocks all traffic.
+  You should now have a VNet protected by a network security group that blocks all traffic.
 
 d) Setting up the Jump Box
 
-    Here we will set up the first virtual machine inside your cloud network, which is protected by the network security group. You will use this machine as a jump box to access your cloud network and any other machines inside your VNet.
+  Here we will set up the first virtual machine inside your cloud network, which is protected by the network security group. You will use this machine as a jump box to access your cloud network and any other machines inside your VNet.
 
-    Remember: Allowing a server to use password authentication for SSH is insecure because the password can be brute forced.
+  Remember: Allowing a server to use password authentication for SSH is insecure because the password can be brute forced.
 
-    - Therefore, we will only use cryptographic SSH keys to access our cloud servers. Password authentication will not be allowed. 
+  - Therefore, we will only use cryptographic SSH keys to access our cloud servers. Password authentication will not be allowed. 
 
-    - This is part of the "ground up" security approach that we have been discussing. 
+  - This is part of the "ground up" security approach that we have been discussing. 
 
-    Open your command line and run `ssh-keygen` to create a new SSH key pair.
+  Open your command line and run `ssh-keygen` to create a new SSH key pair.
 
-    - Your output should be similar to:
+  - Your output should be similar to:
 
     ```bash
     cyber@2Us-MacBook-Pro ~ % ssh-keygen
@@ -150,9 +150,9 @@ d) Setting up the Jump Box
     +----[SHA256]-----+
     ```
 
-    Run `cat ~/.ssh/id_rsa.pub` to display your `id_rsa.pub` key:
+  Run `cat ~/.ssh/id_rsa.pub` to display your `id_rsa.pub` key:
 
-    - Your output should be similar to:
+  - Your output should be similar to:
 
     ```bash
     cyber@2Us-MacBook-Pro ~ % cat ~/.ssh/id_rsa.pub 
@@ -162,7 +162,7 @@ d) Setting up the Jump Box
 
     - Highlight and copy the SSH key string to your clipboard. 
 
-#### VM 1 - Jump-Box
+### VM 1 - Jump-Box
 
 Open your Azure portal and search for "virtual machines."
 
