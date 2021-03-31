@@ -145,7 +145,7 @@ SSH into the control node and follow the steps below:
 
 Specific commands the user will need to run to download the playbook and update the files.
 
-- git clone <https://github.com/shahcker/ELK-Project-CyberSecurity.git>
-- git add .
-- git commit -m "VersionX.X"
-- git push 
+- `git clone <https://github.com/shahcker/ELK-Project-CyberSecurity.git>`
+- `git add .`
+- `git commit -m "VersionX.X"`
+- `git push` 
