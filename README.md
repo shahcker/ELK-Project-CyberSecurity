@@ -6,7 +6,9 @@ The files in this repository were used to configure the network depicted below.
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Ansible-Playbook elk.yml file may be used to install only certain pieces of it, such as Filebeat.
 
-  - [Install Elk Playbook](/Files/install-elk.yml)
+  - [Elk Playbook](/Files/install-elk.yml)
+  - [Filebeat Playbook](/Files/filebeat-playbook.yml)
+  - [Metricbeat Playbook](/Files/metricbeat-playbook.yml)
 
 This document contains the following details:
 - Description of the Topology
@@ -71,8 +73,9 @@ A summary of the access policies in place can be found in the table below.
 
 ### Elk Configuration
 
-Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- The main advantage is that it automates the process of deploying configurations on multiple web-servers in one shot. It is easier to maintain the servers with ansible if there are for example 100 servers. Patches can be updated easily if there were misconfigurations with ansible-playbooks. Also, Ansible is free
+Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because it automates the process of deploying configurations on multiple web-servers in one shot. It is easier to maintain the servers with ansible if there are for example 100 servers. Patches can be updated easily if there were misconfigurations with ansible-playbooks. Also, Ansible is free.
+
+[Elk Playbook](/Files/install-elk.yml)
 
 The playbook implements the following tasks:
 1) Identifies the target machines
@@ -103,9 +106,8 @@ These Beats allow us to collect the following information from each machine:
 
 ### Using the Playbook
 
-[Filebeat Playbook](/Files/filebeat-playbook.yml)
-[Metricbeat Playbook](/Files/metricbeat-playbook.yml)
-
+- [Filebeat Playbook](/Files/filebeat-playbook.yml)
+- [Metricbeat Playbook](/Files/metricbeat-playbook.yml)
 
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
