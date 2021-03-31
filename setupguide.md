@@ -12,7 +12,7 @@ a) Create a Resource Group
 
   Simply type in the type of resource intended to create -- for example, "resource group" -- in the search bar. More often than not the top search result will be the right resource. Click on the link and then click "+ Add".
 
-  ![](/Images/ResouceGroup2.png)
+  ![](/Images/ResourceGroup2.png)
 
   It is necessary to enter a Resource Group name and to select a Region. From there you may select "Review + create" at the bottom of the page, or click "Next: Tags >" to label the Resource Group for further organization (in the case there are multiple Resource Groups). 
 
@@ -108,7 +108,7 @@ c) Setting Up Network Security Groups
 
   - Save the rule.
 
-  ![](/Images/InboudRule.png)
+  ![](/Images/InboundRule.png)
 
   You should now have a VNet protected by a network security group that blocks all traffic.
 
@@ -1468,15 +1468,13 @@ Install Filebeat on your DVWA VM:
 
 ### 2. Creating the Filebeat Configuration File
 
-[Filebeat Config](/Files/filebeat-config.yml)
-
 Next, create a Filebeat configuration file and edit this file so that it has the correct settings to work with your ELK server.
 
 Open a terminal and SSH into your jump box:
 - Start the Ansible container.
 - SSH into the Ansible container.
 
-Copy the provided configuration file for Filebeat to your Ansible container: [Filebeat Configuration File Template](config_files/filebeat-config.yml).
+Copy the provided configuration file for Filebeat to your Ansible container: [Filebeat Configuration File Template](Files/filebeat-config.yml).
 
  - Note that when text is copy and pasted from the web into your terminal, formatting differences are likely to occur that will corrupt this configuration file.
 
